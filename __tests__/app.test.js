@@ -1,14 +1,11 @@
 import React from 'react';
 import App from '../src/components/app';
-import { mount } from 'enzyme';
+import renderer from 'react-test-renderer';
 
-describe('App', () => {
-  it('Check H1 title showing', () => {
-    const app = mount(
-      <App />
-      );
-    const title = app.find('h1');
-    expect(title.text()).toBe('Youtube Video List');
-  });
+it('Display the Correct H1', () => {
+  const tree = renderer.create(
+    <App></App>
+  ).toJSON();
+  expect(tree).toMatchSnapshot();
 });
 
